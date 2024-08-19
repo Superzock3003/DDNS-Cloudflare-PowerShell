@@ -111,9 +111,16 @@ if ($cloudflare_record_info_resposne.success -ne "True") {
   Write-Output "Error! Can't get $dns_record record inforamiton from cloudflare API" | Tee-Object $File_LOG -Append
   Exit
 }
+### Check if the record type is 'A'
+$filtered_dns_record = $cloudflare_record_info_resposne.result | Where-Object { $_.type -eq "A" }
 
-### Get the dns record id from response
-$dns_record_id = $cloudflare_record_info_resposne.result.id.Trim()
+if (-not $dns_record) {
+    Write-Output "Error! No A record found for $dns_record" | Tee-Object $File_LOG -Append
+    Exit
+}
+
+### Get the id from the filtered record
+$dns_record_id = $filtered_dns_record.id.Trim()
 
 ### Push new dns record information to cloudflare's api
 $update_dns_record = @{
