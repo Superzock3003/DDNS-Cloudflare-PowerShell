@@ -9,6 +9,11 @@
 - Cloudflare's options for proxy and TTL configurable via the parameters.
 - Optional Telegram or Discord Notifications
 
+# Whats changed in this fork?
+
+- Added support for other record types (MX, TXT, ...) with the same name
+- Added background execution (**with no cmd popping up**) in Windows Task Scheduler
+
 ## Requirements
 
 - Cloudflare [api-token](https://dash.cloudflare.com/profile/api-tokens) with ZONE-DNS-EDIT Permissions
@@ -72,7 +77,7 @@ Example:
 powershell.exe -ExecutionPolicy Bypass -File C:\DDNS-Cloudflare-PowerShell\update-cloudflare-dns.ps1
 ```
 
-## Automation With Windows Task Scheduler
+## Automation With Windows Task Scheduler (with no cmd popping up)
 
 Example:
 Run at boot with 1 min delay and repeat every 1 min
@@ -92,8 +97,8 @@ Run at boot with 1 min delay and repeat every 1 min
 - **Actions**
   - New...
   - Action: Start a Program
-  - Program/script: _C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe_
-  - Add arguments: _-ExecutionPolicy Bypass -File C:\DDNS-Cloudflare-PowerShell\update-cloudflare-dns.ps1_
+  - Program/script: _C:\Windows\System32\wscript.exe_
+  - Add arguments: _"REPLACE_WITH_YOUR_PATH\DDNS-Cloudflare-PowerShell\run.js"_
   - ok
   - Enter your user's password when prompted
 - **Conditions**
