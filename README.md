@@ -82,6 +82,7 @@ powershell.exe -ExecutionPolicy Bypass -File C:\DDNS-Cloudflare-PowerShell\updat
 Example:
 Run at boot with 1 min delay and repeat every 1 min
 
+- Edit the path in run.js -> **DOUBLE BACKSLASH (\\\\)**
 - Open Task Scheduler
 - Action -> Crate Task
 - **General Menu**
